@@ -1,0 +1,39 @@
+<table>
+  <tr><td>Interstitial Size:</td>
+    <td><select type="text" name="size" id="size" class="form-control">
+        </select>
+    </td></tr>
+
+  <tr><td>Background Color:</td>
+    <td><input type="text" value='white' name='background_color'></td></tr>
+
+  <tr><td>Tab zip or image:</td>
+    <td><input type="file" name='tab_zip'></td></tr>
+
+  <tr><td>Expanded zip or image:</td>
+    <td><input type="file" name='expanded_zip'></td></tr>
+
+  <input type=hidden value='click' id='expand_action' name="expand_action">
+
+  <tbody id='expand_seconds_block' style='display:'><tr><td>Expand Seconds:</td>
+    <td><input type="text" value='2' name='expand_seconds'></td></tr></tbody>
+
+  <tr><td>Create ClickTag Layer:</td>
+    <td><select type="text" id="form3" name='clicktag_layer' class="form-control">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+      </td></tr>
+
+  <tr><td>Clicktag URL:</td>
+    <td><input type="text" value='www.google.com' name='clicktag_url'></td></tr>
+
+</table>
+
+<script>
+function expandAction() {
+  document.getElementById("expand_seconds_block").style.display = (document.getElementById("expand_action").value=="mouseover" ? "" : "none");
+
+}
+expandAction();
+</script>

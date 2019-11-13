@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta name="google-signin-client_id" content="XXXXXXXX">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<link rel="icon" href="/static/img/favicon.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link href="/static/css/styles.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+</head>
+<body>
+<div id='support'>Please contact <a href='mailto:adcase-support@google.com'>adcase-support@google.com</a> to report any issue.</div>
+<div id="header">
+  <div id='header-title'>
+    <a href="/"><img src="/static/img/icon.png" height=30></a>
+    <a href="/">Adcase - Ad builder</a>
+  </div>
+  <div id="g-signin2" class="g-signin2" data-prompt="select_account" data-onsuccess="check_login"></div>
+  <div id="signout">
+    <a href="#" onclick="w.sign_out();">Sign out</a>
+  </div>
+  <div id="user_name"></div>
+</div>
+
+<div id="col1">
+  <ul>
+    <li id='list-title'>Rich Media Formats</li>
+    [menu]
+  </ul>
+</div>
+
+<div id="col2"> 
+  <form id=builderForm enctype="multipart/form-data" onsubmit="return false">
+    <div id="please_sign_in">Please Sign in to continue</div>
+    <div id="main_container">
+      <div id="title"></div>
+
+<script>
+  var w = { format_id:"[format_id]", title:"[title]", fmt:"[fmt]" };
+  w.script = document.createElement("script");
+  w.script.src="/static/js/script.js";
+  document.head.appendChild(w.script);
+</script>

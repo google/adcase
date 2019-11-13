@@ -1,0 +1,45 @@
+<!DOCTYPE HTML><html lang="en-us">
+<head>
+  <meta name="ad.size" content="width=[[width]],height=[[height]]">
+</head>
+<body style='margin:0'>
+  [[htmlTag]]
+  [[clicktag_layer]]
+<script>
+  var clickTag = "[[clicktag_url]]";
+  var openTimeout="[[openTimeout]]"*1;
+
+  if(openTimeout>0) {
+    window.setTimeout(sendMessage,openTimeout);
+  } else {
+    sendMessage();
+  } 
+
+function sendMessage() {
+  window.top.postMessage( {
+    msg: "adcase", format:"interstitial",
+    params:{  
+    backgroundColor: "[[bgcolor]]",
+    autoclose: [[autoclose]],
+    close_button: "[[close_button]]",
+    close_button_width: "[[close_button_width]]",
+    close_button_height: "[[close_button_height]]",
+    width:[[width]],
+    height:[[height]]
+     }
+   }
+     , "*");
+}
+
+window.addEventListener("message", _rm_Message, false);
+function _rm_Message(e) { 
+  if(e.data && e.data.width && e.data.height) {
+    document.body.style.width = e.data.width;
+    document.body.style.height = e.data.height;
+  }
+}
+</script>
+<script data-exports-type="dclk-quick-preview">if(typeof studio !== 'undefined' && studio.Enabler) { studio.Enabler.setRushSimulatedLocalEvents(true); }
+</script>
+</body>
+</html>

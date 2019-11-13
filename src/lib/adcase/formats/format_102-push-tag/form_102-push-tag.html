@@ -1,0 +1,52 @@
+<table>
+  <tr>
+    <td>Creative Width:</td>
+    <td><select type="text" id='width' name="width" class="form-control"></select></td>
+  </tr>
+  
+  <tr>
+    <td>Collapsed Height:</td>
+    <td><select type="text" id='collapsed_height' name="collapsed_height" class="form-control"></select></td>
+  </tr>
+
+  <tr>
+    <td>Expanded Height:</td>
+    <td><select type="text" id='expanded_height' name="expanded_height" class="form-control"></select></td>
+  </tr>
+
+  <tr>
+    <td colspan=2>HTML tag<br>
+      <textarea name='html_tag'>
+This is an example. Expand and collapse are controlled from within the creative.
+
+<a href='javascript:$sf.ext.expand()'>Expand:  $sf.ext.expand();</a>
+
+<a href='javascript:$sf.ext.collapse()'>Collapse:  $sf.ext.collapse();</a></textarea>
+    </td>
+  </tr>
+
+  <tr><td>Initial State:</td>
+    <td><select type="text" id="initial_state" name='initial_state' class="form-control">
+        <option value="C">Collapsed</option>
+        <option value="E" selected>Expanded</option>
+      </select>
+    </td>
+  </tr>
+
+  <tbody id='autoclose_section'>
+    <tr>
+      <td>Autoclose in seconds:</td>
+      <td><input type="text" value='8' name='autoclose_seconds'></td>
+    </tr>
+  </tbody>
+
+  <tr><td>Animated transition:</td>
+    <td><select type="text" id="form3" name='animated_transition' class="form-control">
+        <option value="1">Yes, 0.25 seconds</option>
+        <option value="2">Yes, 0.5 seconds</option>
+        <option value="3">Yes, 0.75 seconds</option>
+        <option value="4">Yes, 1 second</option>
+        <option value="0">No</option>
+      </select>
+      </td></tr>
+</table>

@@ -1,0 +1,50 @@
+  <table>
+    <tr><td>Creative Width:</td>
+      <td><select type="text" id='width' name="width" ></select>
+      </td></tr>
+    <tr><td>Collapsed Height:</td>
+      <td><select type="text" id='collapsed_height' name="collapsed_height" ></select>
+      </td></tr>
+    <tr><td>Layer Height:</td>
+      <td><select type="text" id='expanded_height' name="expanded_height" ></select>
+      </td></tr>
+
+    <tr><td>Layer Background Color:</td>
+      <td><input type="text" value='white' name='background_color'></td></tr>
+
+    <tr><td>Collapsed zip or image:</td>
+      <td><input type="file" name='collapsed_zip'></td></tr>
+
+    <tr><td>Expanded zip or image:</td>
+      <td><input type="file" name='expanded_zip'></td></tr>
+
+
+    <tr><td>Expand Action:</td>
+      <td><select type="text" id='expand_action' name="expand_action"  onchange='expandAction()'>
+        <option selected value='mouseover'>mouseOver, wait X seconds</option>
+        <otion value='click'>expand button click</otion>
+          </select>
+      </td></tr>
+
+    <tbody id='expand_seconds_block' style='display:'><tr><td>Expand Seconds:</td>
+      <td><input type="text" value='2' name='expand_seconds'></td></tr></tbody>
+
+    <tr><td>Create ClickTag Layer:</td>
+      <td><select type="text" id="form3" name='clicktag_layer' >
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+        </td></tr>
+
+    <tr><td>Clicktag URL:</td>
+      <td><input type="text" value='www.google.com' name='clicktag_url'></td></tr>
+
+  </table>
+
+<script>
+function expandAction() {
+  document.getElementById("expand_seconds_block").style.display = (document.getElementById("expand_action").value=="mouseover" ? "" : "none");
+
+}
+expandAction();
+</script>

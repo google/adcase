@@ -1,0 +1,27 @@
+runtime: python37
+#instance_class: F4
+
+handlers:
+- url: /static/css
+  static_dir: static/css
+  secure: always
+
+- url: /static/js
+  static_dir: static/js
+  secure: always
+
+- url: /static/img
+  static_dir: static/img
+  secure: always
+
+- url: /.*
+  script: auto
+  secure: always
+  redirect_http_response_code: 301
+
+env_variables:
+  CLOUD_SQL_CONNECTION_NAME: X
+  CLOUD_SQL_USERNAME: X
+  CLOUD_SQL_PASSWORD: X
+  CLOUD_SQL_DATABASE_NAME: X
+  CLOUD_SQL_DATABASE_HOST: X

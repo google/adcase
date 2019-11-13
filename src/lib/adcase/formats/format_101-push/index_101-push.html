@@ -1,0 +1,129 @@
+<!DOCTYPE HTML><html lang="en-us">
+<head>
+  <meta name="ad.size" content="width=[[width]],height=[[expandedHeight]]">
+<script>
+
+//console.log("adcase push v5");
+
+var tpl = { msgEvents: [], savedEvents:[] };
+
+var clickTag = "[[clicktag_url]]";
+var initExpanded = "[[initExpanded]]";
+var autoClose = [[autocloseSeconds]];
+var collapseSeconds = "[[collapseSeconds]]";
+var expandAction = "[[expandAction]]";
+
+var iconsStyle   = "width:62px;position:absolute;left:900px;top:0;border:1px solid #ccc;"
+                 + "font-family:Arial;font-size:11px;padding:3px;background-color:white;"
+                 + "text-align:center;";
+
+var openIconHTML = "[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]";
+var closeIconHTML= "[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]";
+var setIconsTimeout = window.setTimeout(function() {
+    document.getElementById("dfpIconsContainer").innerHTML = "<div style='"+iconsStyle
+        + ";cursor:pointer;z-index:100' onclick='tpl.toggleAd()'><div id='dfpIconClose'>"
+        + closeIconHTML+"</div><div id='dfpIconOpen' style='display:none'>"+openIconHTML+"</div></div>";
+},2000);
+
+
+tpl.expanded = (initExpanded=="true");
+tpl.timeout = null;
+tpl.autoCloseTimeout = null;
+
+tpl.processMessage = function(e) {
+    if(e.data && e.data.iconsStyle && e.data.openIconHTML && e.data.closeIconHTML) {
+      window.clearTimeout(setIconsTimeout);
+      document.getElementById("dfpIconsContainer").innerHTML = "<div style='"+e.data.iconsStyle+";cursor:pointer;z-index:100' onclick='tpl.toggleAd()'><div id='dfpIconClose'>"
+        +e.data.closeIconHTML+"</div><div id='dfpIconOpen'>"+e.data.openIconHTML+"</div></div>";
+      tpl.syncSize();
+    }
+}
+
+window.addEventListener ? window.addEventListener("message", tpl.processMessage, !1)
+  : (window.attachEvent && window.attachEvent("message", tpl.processMessage));
+
+tpl.toggleAd = function() {
+    tpl.expanded = !tpl.expanded;
+    tpl.syncSize(true);
+}
+
+tpl.syncSize = function(forceTopMsg) {
+    window.clearTimeout(tpl.timeout);
+    if(tpl.expanded) {
+      document.getElementById("dfpIconOpen") && (document.getElementById("dfpIconOpen").style.display="none");
+      document.getElementById("dfpIconClose") && (document.getElementById("dfpIconClose").style.display="");
+
+      document.getElementById("ad_collapsed") && (document.getElementById("ad_collapsed").style.display = "none");
+      document.getElementById("ad_expanded") && (document.getElementById("ad_expanded").style.display = "block");
+
+    } else {
+        document.getElementById("dfpIconOpen") && (document.getElementById("dfpIconOpen").style.display="");
+        document.getElementById("dfpIconClose") && (document.getElementById("dfpIconClose").style.display="none");
+
+        window.clearTimeout(tpl.autoCloseTimeout);
+
+        tpl.timeout = window.setTimeout(function() {
+            document.getElementById("ad_collapsed") && (document.getElementById("ad_collapsed").style.display = "block");
+            document.getElementById("ad_expanded") && (document.getElementById("ad_expanded").style.display = "none")
+        }, [[transitionTimeMs]]);
+
+    }
+    window.top.postMessage({ msg: "adcase", format:"push",
+      params: { action: (tpl.expanded?"expand":"collapse"), transition: [[transitionTimeMs]] }}, "*");
+}
+
+if(autoClose > 0) {
+  tpl.autoCloseTimeout = setTimeout(function() {
+    tpl.expanded = false;
+    tpl.syncSize()}, 1000 * autoClose);
+}
+
+function dcm_load(adtype) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("iframe_"+adtype).src = "data:text/html;charset=utf-8," + escape(xhttp.responseText);
+      //c[adtype] = xhttp.responseText;
+      var d = document.getElementById('iframe_'+adtype).contentWindow.document;
+      d.open('text/html');d.write(xhttp.responseText);d.close();
+    }
+  }   
+  xhttp.open("GET", adtype + '/index2.js', true);
+  xhttp.send();
+}
+
+</script>
+</head>
+<body style='margin:0'>
+[[clicktag_layer]]
+    <div id='dfpIconsContainer'></div>
+  <div id='ad_collapsed' style='display:none;width:[[width]]px;height:[[collapsedHeight]]px;overflow:hidden;'>
+    [[collapsedContent]]
+  </div>
+  <div id='ad_expanded' style='display:none;width:[[width]]px;height:[[expandedHeight]]px;overflow:hidden;'>
+    [[expandedContent]]
+  </div>
+
+<script>
+
+[[dcmScript]]
+
+var mouseoverTimeout=null;
+if(expandAction=="mouseover") {
+    document.getElementById("dfpIconsContainer").style.display="none";
+    document.body.onmouseover=function() { window.clearTimeout(mouseoverTimeout); tpl.mouseoverExpand(); };
+    document.body.onmouseout=function() { window.clearTimeout(mouseoverTimeout);  mouseoverTimeout=window.setTimeout(tpl.mouseoverCollapse,collapseSeconds*1000); };
+}
+tpl.mouseoverExpand = function() {
+  tpl.expanded=true;
+  tpl.syncSize();
+}
+tpl.mouseoverCollapse = function() {
+  tpl.expanded=false;
+  tpl.syncSize();
+}
+window.top.postMessage({ msg: "adcase", format:"push", params: { action: "pushSetup" } } , "*");
+tpl.syncSize();
+</script>
+
+</body></html>

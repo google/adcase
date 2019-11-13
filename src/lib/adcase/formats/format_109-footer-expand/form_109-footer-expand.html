@@ -1,0 +1,58 @@
+<table>
+  <tr><td>Creative Width:</td>
+    <td><select type="text" id='width' name="width" class="form-control"></select>
+    </td></tr>
+  <tr><td>Collapsed Height:</td>
+    <td><select type="text" id='collapsed_height' name="collapsed_height" class="form-control"></select>
+    </td></tr>
+  <tr><td>Expanded Height:</td>
+    <td><select type="text" id='expanded_height' name="expanded_height" class="form-control"></select>
+    </td></tr>
+    <tr><td colspan=2>** The creative size in Ad Manager must be this Expanded Height.
+        <br>&nbsp; </td></tr>
+
+
+  <tr><td>Collapsed zip or image:</td>
+    <td><input type="file" name='collapsed_zip'></td></tr>
+
+  <tr><td>Expanded zip or image:</td
+    expandAction();>
+    <td><input type="file" name='expanded_zip'></td></tr>
+
+  <tr><td>Expand Action:</td>
+    <td><select type="text" id='expand_action' name="expand_action" class="form-control" onchange='expandAction()'>
+      <option selected value='click'>expand button click</option>
+      <option value='mouseover'>mouseOver, wait X seconds</option>
+        </select>
+    </td></tr>
+
+  <tbody id='expand_seconds_block' style='display:none'><tr><td>Expand Seconds:</td>
+    <td><input type="text" value='5' name='expand_seconds'></td></tr></tbody>
+
+  <tr><td>Create ClickTag Layer:</td>
+    <td><select type="text" id="form3" name='clicktag_layer' class="form-control">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+      </td></tr>
+
+  <tr><td>Clicktag URL:</td>
+    <td><input type="text" value='www.google.com' name='clicktag_url'></td></tr>
+
+  <tr><td>Animated transition:</td>
+    <td><select type="text" id="form3" name='animated_transition' class="form-control">
+        <option value="1">Yes, 0.25 seconds</option>
+        <option value="2">Yes, 0.5 seconds</option>
+        <option value="3">Yes, 0.75 seconds</option>
+        <option value="4">Yes, 1 second</option>
+        <option value="0">No</option>
+      </select>
+      </td></tr>
+</table>
+
+<script>
+function expandAction() {
+  document.getElementById("expand_seconds_block").style.display = (document.getElementById("expand_action").value=="mouseover" ? "" : "none");
+}
+expandAction();
+</script>

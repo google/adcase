@@ -1,0 +1,41 @@
+<script>
+var clickTag = "[[clicktag_url]]";
+var initExpanded = [[initExpanded]];
+var autoClose = [[autocloseSeconds]];
+
+var tpl = { msgEvents: [] };
+
+tpl.expanded = initExpanded;
+tpl.autoCloseTimeout = null;
+
+tpl.toggleAd = function(setExpanded) {
+    clearTimeout(tpl.autoCloseTimeout);
+
+    if(setExpanded !== undefined) {
+        tpl.expanded = setExpanded;
+    } else {
+        tpl.expanded = !tpl.expanded;
+    }
+    tpl.syncSize();
+}
+
+tpl.syncSize = function() {
+    window.top.postMessage({ msg: "adcase", format:"push",
+            params: { action: (tpl.expanded?"expand":"collapse"), transition: [[transitionTimeMs]], expandedHeight: [[expandedHeight]], collapsedHeight: [[collapsedHeight]] }}, "*");
+}
+
+if(autoClose > 0) {
+    tpl.autoCloseTimeout = setTimeout(function() {
+        tpl.expanded = false;
+        tpl.syncSize()}, 1000 * autoClose);
+}
+
+var $sf = { ext: {} };
+$sf.ext.expand = function() { console.log("call $sf.ext.expand()"); tpl.toggleAd(true) };
+$sf.ext.collapse = function() { console.log("call $sf.ext.collapse()"); tpl.toggleAd(false) };
+
+
+tpl.syncSize();
+
+</script>
+[[htmlTag]]

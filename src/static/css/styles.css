@@ -1,0 +1,68 @@
+<?php header("Content-type: text/css"); ?>
+
+body, div, li, input, select, button { font-family: Poppins; margin:0;}
+textarea { width:600px; height:300px }
+select, textarea, input { border:1px solid #ddd; border-radius:4px; margin:1px }
+select:focus, textarea:focus, input:focus { border:2px solid #4285F4;border-radius:4px;outline: none; margin:0 }
+
+#header { position:fixed; top:0; left:0; height:50px; width:100%; background-color:#4285F4 }
+#header-title a { position:fixed; top:14px; left:80px; color:white; font-weight:300; text-decoration:none; }
+#header-title img { position:fixed; top:0; left:0; margin:10px 20px 0 40px }
+#user_name { float:right; color:white; margin:17px 0; font-size:13px;}
+#signout  { display:none;float:right; margin:13px 20px; }
+#signout a { color:white; text-decoration:none; font-size:13px; }
+#g-signin2 { display:none; position:fixed; right:6px; top:6px;}
+#please_sign_in { display:none;position:fixed; left:360px; top:100px; } 
+
+#col1 { width:300px;float:left;margin:34px 0 0 0; height:calc(100% - 80px)}
+#col2 { width:calc(100% - 400px);float:left; padding-top:20px;margin:34px 0 0 0 ; height:calc(100% - 80px) }
+
+select {height:34px; font-size:13px; padding: 0 10px 0 10px; min-width:200px}
+input {height:34px; font-size:13px; padding: 0 10px 0 10px; min-width:180px}
+ul {list-style-type: none; padding:0; display:none;} 
+li#list-title {font-weight:bold;} 
+li:hover {background-color:#f9f9f9;cursor:pointer;}
+li { padding:10px 0 10px 20px; border:1px solid #eee; border-top:0; font-size:13px; } 
+
+body,div,td {font-family: 'Poppins', sans-serif;}
+
+.formTitle{ font-size:18px; }
+.selected { background-color:#ddd }
+
+#loading { width: 266px; height: 200px; position:fixed; right:-10px; top:60px; bottom:0; display:none }
+#main_container { display:none; margin:20px}
+#main_container table { border-collapse: collapse }
+#main_container tr:hover { background-color: #f5f5f5  }
+#main_container td:first-child { width:150px; }
+#main_container td { height:34px; font-size:13px; padding:5px }
+
+button { border-radius:4px; transition: all 0.2s; cursor:pointer; margin:0; font-size:13px; color:white; height:34px; line-height:34px; text-align:center; padding: 0 20px 0 20px; background-color:#4285F4; border:0 }
+button:hover { background-color: #42cdf4; border-color:#42cdf4 }
+
+#download_button button { background-color:#0faf19; margin-top:20px }
+#download_button button:hover { background-color:#58e819; }
+#submit_button { margin:20px 0 20px 165px; }
+
+.edit_button { background-color:#ccc;}
+
+input[type="file"] {
+  padding:0;
+}
+::-webkit-file-upload-button {
+  cursor: pointer;
+  font-family: Poppins;
+  font-size:13px; 
+  border-radius: 4px;
+  border:0;
+  padding:0 20px 0 20px;
+  background-color:#4285F4;
+  color: white;
+  height:34px;
+  transition: all 0.2s;
+}
+::-webkit-file-upload-button:hover {
+  background-color: #42cdf4
+}
+
+#support { position:absolute; right:200px; text-align:right; width:100%; z-index:1; top:17px; font-size:13px; color:white;}
+#support a { text-decoration:none; font-weight:bold; color:orange; font-family:Arial; }

@@ -1,0 +1,70 @@
+<table>
+  <tr><td>Width:</td>
+    <td><select type="text" id='width' name="width"></select>
+    </td></tr>
+  <tr><td>Height:</td>
+    <td><select type="text" id='collapsed_height' name="collapsed_height"></select>
+    </td></tr>
+
+  <tr><td>Source:</td>
+    <td><select type="text" id='source' name="source"  onchange=changeSource()>
+        <option value='zip'>ZIP</option>
+        <option>Image</option>
+        <option value='tag'>Third Party Tag</option>
+        </select>
+    </td></tr>
+
+  <tbody id='file_block'>
+  <tr><td id='file_title'>Zipfile</td>
+    <td><input type="file" name='zipfile'></td></tr>
+  </tbody>
+
+  <tbody id='tag_block'>
+  <tr><td>Third Party Tag</td>
+    <td><textarea name='tag' style='min-width:600px;width:100%;height:300px'></textarea></td></tr>
+
+  <tr><td id='click_no' style='display:none;font-weight:bold' colspan=2>You must enter %%CLICK_URL_ESC%% or %%CLICK_URL_UNESC%% macros in order to track clicks correctly in DFP.</td></tr>
+  </tbody>
+
+
+  <tr><td>Create ClickTag Layer:</td>
+    <td><select type="text" id='clicktag_layer' name='clicktag_layer' onchange=changeClick()>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+      </td></tr>
+
+  <tbody id='click_yes'>
+  <tr><td>Clicktag URL:</td>
+    <td><input type="text" value='www.google.com' name='clicktag_url'></td></tr>
+  </tbody>
+
+
+</table>
+
+
+<script>
+function changeClick() {
+  if(document.getElementById("clicktag_layer").value=="1") {
+    document.getElementById("click_no").style.display="none";
+    document.getElementById("click_yes").style.display="";
+  } else {
+    document.getElementById("click_no").style.display="";
+    document.getElementById("click_yes").style.display="none";
+  }
+}
+function changeSource() {
+  var source = document.getElementById("source").value;
+  if(source == "tag") {
+    document.getElementById("file_block").style.display="none";
+    document.getElementById("tag_block").style.display="";
+  } else {
+    document.getElementById("file_block").style.display="";
+    document.getElementById("tag_block").style.display="none";
+  }
+  document.getElementById("file_title").innerHTML = (source=="zip"?"Zipfile":"Image");
+
+}
+changeSource();
+changeClick();
+</script>

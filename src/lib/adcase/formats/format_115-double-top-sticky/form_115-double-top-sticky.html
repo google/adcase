@@ -1,0 +1,73 @@
+<table>
+  <tr><td>Creative Width:</td>
+    <td><select type="text" id='width' name="width" class="form-control"></select>
+    </td></tr>
+  <tr><td>Inline Height:</td>
+    <td><select type="text" id='inline_height' name="inline_height" class="form-control"></select>
+    </td></tr>
+  <tr><td>Sticky Height:</td>
+    <td><select type="text" id='sticky_height' name="sticky_height" class="form-control"></select>
+    </td></tr>
+
+  <tr><td>Top Margin:</td>
+    <td><input type="text" id='top_margin' name="top_margin" class="form-control" value="45">
+    </td></tr>
+
+  <tr><td>Inline zip or image:</td>
+    <td><input type="file" name='inline_zip'></td></tr>
+
+  <tr><td>Sticky zip or image:</td>
+    <td><input type="file" name='sticky_zip'></td></tr>
+
+  <tr><td>Create ClickTag Layer:</td>
+    <td><select type="text" id="form3" name='clicktag_layer' class="form-control">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+      </td></tr>
+
+  <tr><td>Clicktag URL:</td>
+    <td><input type="text" value='www.google.com' name='clicktag_url'></td></tr>
+
+  <tbody style='display:none'><tr><td>Floating Inline:</td>
+    <td><select type="text" id="floating_inline" name='floating_inline' class="form-control" onchange='changes()'>
+        <option value="1">Yes</option>
+        <option value="0" selected>No</option>
+      </select>
+      </td></tr></tbody>
+
+  <tbody id='floatingInlineSection'>
+    <tr><td>Insert Inline position:</td>
+    <td><select type="text" id="inline_position" name='inline_position' class="form-control">
+        <option value="beforebegin" selected>before begin</option>
+        <option value="afterbegin">after begin</option>
+        <option value="beforeend">before end</option>
+        <option value="afterend" selected>after end</option>
+      </select></td></tr>
+    <tr><td>Insert Inline div ID:</td>
+    <td><input type="text" id='inline_position_div_id' name="inline_position_div_id" class="form-control">
+    </td></tr>
+  </tbody>
+
+  <tr><td>Animated sticky:</td>
+    <td><select type="text" id="form3" name='animated_transition' class="form-control">
+        <option value="1" selected>Yes, 0.25 seconds</option>
+        <option value="2">Yes, 0.5 seconds</option>
+        <option value="3">Yes, 0.75 seconds</option>
+        <option value="4">Yes, 1 second</option>
+        <option value="0">No</option>
+      </select>
+      </td></tr>
+
+</table>
+
+<script>
+function changes() {
+  if(document.getElementById("floating_inline").value=="1") {
+  document.getElementById("floatingInlineSection").style.display="";
+  } else {
+  document.getElementById("floatingInlineSection").style.display="none";
+  }
+}
+changes();
+</script>
