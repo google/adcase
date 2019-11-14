@@ -56,6 +56,9 @@ def build(req):
       os.rename(tdir + "/collapsed/index.html", tdir+"/collapsed/" + file_name)
     except os.FileNotFoundError:
       return {"errors": ["No index.html in collapsed zip"]}
+
+    if dcm:
+      change_base(tdir+"/collapsed/" + file_name, "collapsed")
   elif not data["collapsed"]["ext"]:
     return {"errors": ["No collapsed file"]}
   else: 
@@ -75,6 +78,10 @@ def build(req):
       os.rename(tdir + "/expanded/index.html", tdir + "/expanded/" + file_name)
     except os.FileNotFoundError:
       return {"errors": ["No index.html in expanded zip"]}
+
+    if dcm:
+      change_base(tdir+"/expanded/" + file_name, "expanded")
+
   elif not data["expanded"]["ext"]:
     return {"errors": ["No expanded file"]}
   else: 
@@ -121,3 +128,9 @@ def build(req):
       v["dcmScript"] = v["dcmScript"] + "\ndcm_load('expanded');"
 
   return {"errors": errors, "dir": tdir, "index": index, "vars": v}
+
+def change_base(file_path, new_folder):
+  index = f.file_get_contents(file_path)
+  index = index.replace("<head>", "<head><base href='"+new_folder+"'>")  
+  f.file_put_contents(file_path, index)
+ 
