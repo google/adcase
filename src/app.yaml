@@ -20,8 +20,9 @@ handlers:
   redirect_http_response_code: 301
 
 env_variables:
-  CLOUD_SQL_CONNECTION_NAME: X
-  CLOUD_SQL_USERNAME: X
-  CLOUD_SQL_PASSWORD: X
-  CLOUD_SQL_DATABASE_NAME: X
-  CLOUD_SQL_DATABASE_HOST: X
+  CLOUD_SQL_CONNECTION_NAME: /cloudsql/{connection-name}
+  CLOUD_SQL_USERNAME: {username}
+  CLOUD_SQL_PASSWORD: {password}
+  CLOUD_SQL_DATABASE_NAME: {database}
+  CLOUD_SQL_HOST: {host}
+  CLOUD_BUCKET_NAME: {bucket-name}

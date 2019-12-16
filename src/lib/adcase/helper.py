@@ -131,12 +131,14 @@ def save_to_storage(file_name, destination_file):
     string with the downloadable storage url
   """
   client = storage.Client()
-  bucket = client.get_bucket("adcase-storage")
+  bucket = client.get_bucket(os.environ.get("CLOUD_BUCKET_NAME"))
 
   blob = bucket.blob(destination_file)
   blob.upload_from_filename(file_name)
 
-  return "https://storage.googleapis.com/adcase-storage/" + destination_file
+  return "https://storage.googleapis.com/{}/{}".format(
+    os.environ.get("CLOUD_BUCKET_NAME"), destination_file
+  )
 
 
 def save_file(file_to_save, location):
