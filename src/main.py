@@ -23,6 +23,7 @@ from lib.adcase import db
 #from lib.adcase import demo
 from lib.adcase import login
 from lib.adcase import sizes
+from lib.adcase import setup
 
 app = Flask(__name__)
 app.debug = True
@@ -116,4 +117,14 @@ def main_demo():
     Json data
   """
   out = demo.run(request)
+  return out
+
+@app.route("/builder/setup", methods=["GET"])
+def main_setup():
+  """Initial setup of mysql tables.
+
+  Returns:
+    Ok if successful
+  """
+  out = setup.run()
   return out

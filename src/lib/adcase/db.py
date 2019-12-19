@@ -31,22 +31,12 @@ def close_connection():
 
 def open_connection():
   """Opens g.connection."""
-  if os.environ.get('CLOUD_SQL_CONNECTION_NAME'): 
-    g.connection = pymysql.connect(
-      user=os.environ.get('CLOUD_SQL_USERNAME'),
-      password=os.environ.get('CLOUD_SQL_PASSWORD'),
-      unix_socket=os.environ.get('CLOUD_SQL_CONNECTION_NAME'),
-      db=os.environ.get('CLOUD_SQL_DATABASE_NAME'),
-      host=os.environ.get('CLOUD_SQL_HOST')
-      )
-  else:
-    g.connection = pymysql.connect(
-      user=os.environ.get('CLOUD_SQL_USERNAME'),
-      password=os.environ.get('CLOUD_SQL_PASSWORD'),
-      db=os.environ.get('CLOUD_SQL_DATABASE_NAME'),
-      host=os.environ.get('CLOUD_SQL_HOST')
-      )
-
+  g.connection = pymysql.connect(
+    user=os.environ.get('CLOUD_SQL_USERNAME'),
+    password=os.environ.get('CLOUD_SQL_PASSWORD'),
+    unix_socket=os.environ.get('CLOUD_SQL_CONNECTION_NAME'),
+    db=os.environ.get('CLOUD_SQL_DATABASE_NAME')
+  )
   g.cursor = g.connection.cursor()
 
 
