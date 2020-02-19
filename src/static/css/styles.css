@@ -12,7 +12,7 @@ select:focus, textarea:focus, input:focus { border:2px solid #4285F4;border-radi
 #signout  { display:none;float:right; margin:13px 20px; }
 #signout a { color:white; text-decoration:none; font-size:13px; }
 #g-signin2 { display:none; position:fixed; right:6px; top:6px;}
-#please_sign_in { display:none;position:fixed; left:360px; top:100px; } 
+#please_sign_in { display:none;position:fixed; left:360px; top:300px; } 
 
 #col1 { width:300px;float:left;margin:34px 0 0 0; height:calc(100% - 80px)}
 #col2 { width:calc(100% - 400px);float:left; padding-top:20px;margin:34px 0 0 0 ; height:calc(100% - 80px) }
