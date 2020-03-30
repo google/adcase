@@ -109,7 +109,3 @@ Modify slots depending on expected creative types:
   </div>
 </div>
 ```
-
-### Step 5: 
-Enjoy.
-
