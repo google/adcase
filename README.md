@@ -22,6 +22,9 @@ Apache header:
 ## Backend (Python builder) implementation highlights
 Configuration file `app.yaml` is made for [Google App Engine](https://cloud.google.com/appengine/docs/standard/python3/config/appref). If'll host this application in any other way, you must adapt this file or create another of your preference.
 
+Modify `tpl/header.html` with correct value for "google-signin-client_id" (OAuth Client ID). This is
+important for getting user login to work.
+
 Immediately after deploying the application, access endpoint `/builder/setup` in order to configure the database.
 
 
